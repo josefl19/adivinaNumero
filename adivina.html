@@ -34,7 +34,7 @@
     <p>Se selecciona un número aleatorio de 1 - 100 trata de adivinarlo</p>
     <div class="container">
         <label for="guessField">Adivina el numero: </label>
-        <input type="tel" name="guessField" id="guessField">
+        <input type="tel" name="guessField" class="guessField" id="guessField">
         <input type="button" value="Enviar intento" class="guessSubmit">
 
         <p class="guesses"></p>
@@ -63,6 +63,15 @@
 
         let guessCount = 1;
         let resetButton;
+        
+       checkGuess();
+        function checkGuess() {
+                let userGuess = Number(guessField.value);
+                if (guessCount === 1) {
+                guesses.textContent = 'Previous guesses: ';
+                }
+                guesses.textContent += userGuess + ' ';
+        }
 
     </script>
 </body>
