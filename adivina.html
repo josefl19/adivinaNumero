@@ -5,17 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Advina el número</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 </head>
+
+<style>
+    body{
+        width: 90%;
+        margin: 0 auto;
+        font-family: 'Roboto Slab', serif;
+
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    h1,
+    p,
+    label,
+    input{
+        text-align: center;
+    }
+</style>
+
 <body>
+
+    <h1>Adivina el número</h1>
+    <p>Se selecciona un número aleatorio de 1 - 100 trata de adivinarlo</p>
+    <div class="container">
+        <label for="guessField">Adivina el numero: </label>
+        <input type="tel" name="guessField" id="guessField">
+        <input type="button" value="Enviar intento" class="guessSubmit">
+
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
     
     <script>
     
         let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        //
         const guesses = document.querySelector('.guesses');
+
+        //Ultimo ingresado
         const lastResult = document.querySelector('.lastResult');
+
+        //Mensaje
         const lowOrHi = document.querySelector('.lowOrHi');
 
+        //Boton
         const guessSubmit = document.querySelector('.guessSubmit');
+
+        //Caja de texto
         const guessField = document.querySelector('.guessField');
 
         let guessCount = 1;
