@@ -35,7 +35,7 @@
     <div class="container">
         <label for="guessField">Adivina el numero: </label>
         <input type="tel" name="guessField" class="guessField" id="guessField">
-        <input type="button" value="Enviar intento" class="guessSubmit">
+        <input type="button" value="Enviar intento" class="guessSubmit" onclick="checkGuess();">
 
         <p class="guesses"></p>
         <p class="lastResult"></p>
@@ -64,15 +64,29 @@
         let guessCount = 1;
         let resetButton;
         
-       checkGuess();
+        
         function checkGuess() {
                 let userGuess = Number(guessField.value);
                 if (guessCount === 1) {
                 guesses.textContent = 'Previous guesses: ';
                 }
                 guesses.textContent += userGuess + ' ';
-                guessCount ++;
+                if(guessCount<=10){
+                    guessCount ++;
+                    guessField.value = '';                    
+                }else{
+                    alert("Numero de intentos terminados");
+                    cleanGame();
+                }
+                
         }
+        function cleanGame(){
+        guesses.textContent = '';
+        guessCount = 0;
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        
+        }
+        
 
     </script>
 </body>
