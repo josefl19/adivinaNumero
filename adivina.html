@@ -41,9 +41,9 @@
         <p class="lastResult"></p>
         <p class="lowOrHi"></p>
     </div>
-    
+
     <script>
-    
+
         let randomNumber = Math.floor(Math.random() * 100) + 1;
 
         //
@@ -63,8 +63,8 @@
 
         let guessCount = 1;
         let resetButton;
-        
-        
+
+
         function checkGuess() {
                 let userGuess = Number(guessField.value);
                 if (guessCount === 1) {
@@ -73,20 +73,33 @@
                 guesses.textContent += userGuess + ' ';
                 if(guessCount<=10){
                     guessCount ++;
-                    guessField.value = '';                    
+                    guessField.value = '';
+
+                    if (userGuess == randomNumber) {
+                        //TODO
+                    } else {
+                        lastResult.style.backgroundColor = "red";
+                        lastResult.style.color = "white";
+                        lastResult.textContent = "Wrong!";
+
+                        if (userGuess < randomNumber)
+                            lowOrHi.textContent = "Last guess was too low!";
+                        else
+                            lowOrHi.textContent = "Last guess was too high!";
+                    }
                 }else{
                     alert("Numero de intentos terminados");
                     cleanGame();
                 }
-                
+
         }
         function cleanGame(){
         guesses.textContent = '';
         guessCount = 0;
         let randomNumber = Math.floor(Math.random() * 100) + 1;
-        
+
         }
-        
+
 
     </script>
 </body>
