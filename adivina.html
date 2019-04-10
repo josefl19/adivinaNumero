@@ -13,19 +13,18 @@
         width: 90%;
         margin: 0 auto;
         font-family: 'Roboto Slab', serif;
-
     }
-
     .container {
         text-align: center;
     }
-
     h1,
     p,
     label,
     input{
         text-align: center;
     }
+
+    .ocultar{display: none;}
 </style>
 
 <body>
@@ -42,28 +41,19 @@
     </div>
 
     <script>
-
         let randomNumber = Math.floor(Math.random() * 100) + 1;
-
         //
         const guesses = document.querySelector('.guesses');
-
         //Ultimo ingresado
         const lastResult = document.querySelector('.lastResult');
-
         //Mensaje
         const lowOrHi = document.querySelector('.lowOrHi');
-
         //Boton
         const guessSubmit = document.querySelector('.guessSubmit');
-
         //Caja de texto
         const guessField = document.querySelector('.guessField');
-
         let guessCount = 1;
         let resetButton;
-
-
         function checkGuess() {
            if(guessField.value == ''){
                 alert("No ha ingresado un número"); 
@@ -79,7 +69,10 @@
                     guessCount ++;
                     guessField.value = '';
                     if (userGuess == randomNumber) {
-                        //TODO
+                        lastResult.textContent = 'Congratulations! You got it right!';
+                        lastResult.style.backgroundColor = 'green';
+                        lowOrHi.textContent = '';
+                        gameOver();
                     } else {
                         lastResult.style.backgroundColor = "red";
                         lastResult.style.color = "white";
@@ -95,17 +88,35 @@
                 }
            }
         }
-        function cleanGame(){
-            guessField.value='';
+        
+        function gameOver()
+        {
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+            resetButton = document.createElement('button');
+            resetButton.textContent = 'Start new game';
+            document.body.appendChild(resetButton);
+            resetButton.addEventListener('click', resetGame); 
+        }
+        
+        function cleanGame(){  
+            guessField.disabled = false;
+            guessSubmit.disabled = false;
+            guessField.value = '';
+            guessField.focus();
             guessCount = 1;
             let randomNumber = Math.floor(Math.random() * 100) + 1;
             guesses.textContent = 'Previous guesses: ';
             lastResult.style.backgroundColor = "white";
             lastResult.textContent = "";
-            lowOrHi.textContent = "";    
+            lowOrHi.textContent = "";
         }
 
-
+        function resetGame()
+        {
+            resetButton.parentNode.removeChild(resetButton);
+            cleanGame();
+        }
     </script>
 </body>
 </html>
