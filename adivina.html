@@ -65,6 +65,11 @@
 
 
         function checkGuess() {
+           if(guessField.value == ''){
+                alert("No ha ingresado un número"); 
+           }
+           else
+           {
                 let userGuess = Number(guessField.value);
                 if (guessCount === 1) {
                 guesses.textContent = 'Previous guesses: ';
@@ -73,14 +78,12 @@
                 if(guessCount<=10){
                     guessCount ++;
                     guessField.value = '';
-
                     if (userGuess == randomNumber) {
                         //TODO
                     } else {
                         lastResult.style.backgroundColor = "red";
                         lastResult.style.color = "white";
                         lastResult.textContent = "Wrong!";
-
                         if (userGuess < randomNumber)
                             lowOrHi.textContent = "Last guess was too low!";
                         else
@@ -90,16 +93,16 @@
                     alert("Numero de intentos terminados");
                     cleanGame();
                 }
-
+           }
         }
         function cleanGame(){
-        guesses.textContent = '';
-        guessCount = 0;
-        let randomNumber = Math.floor(Math.random() * 100) + 1;
-        guesses.textContent = 'Previous guesses: ';
-        lastResult.style.backgroundColor = "white";
-        lastResult.textContent = "";
-        lowOrHi.textContent = "";    
+            guessField.value='';
+            guessCount = 1;
+            let randomNumber = Math.floor(Math.random() * 100) + 1;
+            guesses.textContent = 'Previous guesses: ';
+            lastResult.style.backgroundColor = "white";
+            lastResult.textContent = "";
+            lowOrHi.textContent = "";    
         }
 
 
